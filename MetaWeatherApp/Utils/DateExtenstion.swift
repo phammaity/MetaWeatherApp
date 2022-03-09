@@ -6,10 +6,12 @@
 //
 
 import Foundation
+
 extension Date {
-    func toString(dateFormatter:String) -> String {
+    func toString(stringFormatter:String) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = dateFormatter
+        dateFormatter.dateFormat = stringFormatter
         return dateFormatter.string(from: self)
     }
 }
+

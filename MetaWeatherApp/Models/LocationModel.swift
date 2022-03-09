@@ -15,6 +15,6 @@ struct LocationModel: Codable {
     enum CodingKeys: String, CodingKey {
         case woeid
         case title
-        case locationType
+        case locationType = "location_type"
     }
 }
