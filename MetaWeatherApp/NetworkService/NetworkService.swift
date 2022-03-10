@@ -38,7 +38,7 @@ class NetworkService: NetworkServiceProtocol {
     }
     
     func getWeatherInfo(woeid: Int, day: Date) -> AnyPublisher<DataResponse<[WeatherInfo], NetworkError>, Never> {
-        let urlString = baseUrlString + String(format: ApiResquest.fetchWeatherInfo.rawValue, woeid, day.toString(stringFormatter: "yyyy/mm/dd"))
+        let urlString = baseUrlString + String(format: ApiResquest.fetchWeatherInfo.rawValue, woeid, day.toString(stringFormatter: "yyyy/MM/dd"))
         
         let url = URL(string: urlString)!
         

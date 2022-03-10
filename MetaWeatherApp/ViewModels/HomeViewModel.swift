@@ -7,7 +7,6 @@
 
 import Foundation
 import Combine
-import Foundation
 
 protocol HomeDelegate: AnyObject {
     func startLoading()
@@ -16,6 +15,7 @@ protocol HomeDelegate: AnyObject {
 }
 
 protocol HomeProtocol: AnyObject {
+    var isNoResult: Bool {get}
     func numberOfRows() -> Int
     func locationVM(at index: Int) -> LocationInfoProtocol
     func search(keyword: String)
@@ -38,6 +38,10 @@ class HomeViewModel: HomeProtocol {
     }
     
 //MARK: HomeProtocol
+    var isNoResult: Bool {
+        self.locationVMs.isEmpty
+    }
+    
     func search(keyword: String) {
         self.delegate?.startLoading()
         serviceManager.searchLocation(name: keyword)

@@ -8,6 +8,7 @@
 import UIKit
 
 class HomeViewController: BaseViewController {
+    @IBOutlet weak var noResultLabel: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     var viewModel: HomeProtocol?
@@ -22,8 +23,13 @@ class HomeViewController: BaseViewController {
         
         //configure searchbar
         searchBar.placeholder = "Search city by name"
+        noResultLabel.isHidden = true
     }
 
+    private func showWeatherDetail(locationVM: LocationInfoProtocol) {
+        let vc = WeatherViewController.instantiate(locationVM: locationVM)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 //MARK: UITableViewDataSource
@@ -43,6 +49,15 @@ extension HomeViewController: UITableViewDataSource {
     }
 }
 
+//MARK: UITableViewDelegate
+extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let locationVM = viewModel?.locationVM(at: indexPath.row) else {
+            return
+        }
+        showWeatherDetail(locationVM: locationVM)
+    }
+}
 
 //MARK: HomeDelegate
 extension HomeViewController: HomeDelegate {
@@ -51,15 +66,13 @@ extension HomeViewController: HomeDelegate {
     }
     
     func dataDidLoad() {
-        self.tableView.refreshControl?.endRefreshing()
+        self.noResultLabel.isHidden = !(viewModel?.isNoResult ?? false)
         self.tableView.reloadData()
-        //TODO: close start indicator
     }
     
     func dataLoadError(error: String) {
-        self.tableView.refreshControl?.endRefreshing()
+        self.noResultLabel.isHidden = true
         self.showErrorAlert(error: error)
-        //TODO: close start indicator
     }
 }
 
