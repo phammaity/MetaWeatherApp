@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller-->
+        <!--Weather App-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="MetaWeatherApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -57,7 +57,7 @@
                             <constraint firstItem="UmG-pO-VH3" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="xal-1f-zt6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="qkY-uY-qrV"/>
+                    <navigationItem key="navigationItem" title="Weather App" id="qkY-uY-qrV"/>
                     <connections>
                         <outlet property="noResultLabel" destination="UmG-pO-VH3" id="ijB-vD-5KY"/>
                         <outlet property="searchBar" destination="m3p-Yh-h83" id="EfO-ao-GZc"/>

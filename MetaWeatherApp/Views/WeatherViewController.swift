@@ -25,10 +25,12 @@ class WeatherViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        indicator.isHidden = true
-        
         reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        indicator.startAnimating()
     }
     
     private func reloadData() {
